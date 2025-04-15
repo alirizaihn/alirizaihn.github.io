@@ -1,0 +1,780 @@
+/* Genel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #0055a5; /* Ana renk - koyu mavi */
+    --secondary-color: #003b73; /* Daha koyu mavi tonu */
+    --accent-color: #e63b2e; /* Vurgu rengi - kırmızı */
+    --highlight-color: #c7251a; /* Koyu kırmızı */
+    --text-color: #333; /* Ana metin rengi */
+    --text-light: #666; /* Daha açık metin rengi */
+    --light-color: #f8f9fa; /* Arka plan için açık renk */
+    --dark-color: #1e2a3a; /* Footer gibi koyu alanlar için */
+    --border-color: #e1e5e9; /* Kenarlıklar için renk */
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Gölge efekti */
+    --transition: all 0.3s ease; /* Geçiş efektleri için */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 8px; /* Tutarlı köşe yuvarlaklığı */
+    --button-radius: 6px; /* Butonlar için köşe yuvarlaklığı */
+}
+
+/* Sayfa geneli ayarlar */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Ana içerik alanı, footer'ı sayfanın altında tutar */
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+/* İçerik container'ı */
+.container {
+    width: 100%;
+    max-width: 1140px; /* Daha uyumlu bir genişlik */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Link stilleri */
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:hover, a:focus {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: none;
+}
+
+/* Buton stilleri - tutarlı hale getirildi */
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 22px;
+    border-radius: var(--button-radius);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 20px;
+}
+
+.btn-outline:hover, .btn-outline:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+.btn:hover, .btn:focus {
+    background-color: var(--highlight-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+}
+
+.btn:focus, .btn-outline:focus {
+    outline: none;
+}
+
+/* Form elemanları için focus stilleri */
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 85, 165, 0.15);
+    border-radius: var(--button-radius);
+}
+
+/* Bölüm başlıkları */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px; /* Azaltıldı */
+    position: relative;
+    font-size: 30px; /* Azaltıldı */
+    color: var(--dark-color);
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px; /* Azaltıldı */
+    background-color: var(--accent-color);
+    margin: 15px auto 0;
+}
+
+.section-description {
+    text-align: center;
+    margin-bottom: 30px; /* Azaltıldı */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-light);
+    font-size: 16px; /* Belirtildi */
+}
+
+/* Ekran okuyucular için gizli metin */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Header Stili */
+header {
+    background-color: white;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 22px; /* Küçültüldü */
+    color: var(--primary-color);
+    margin-left: 10px; /* Azaltıldı */
+    display: flex;
+    align-items: center;
+    line-height: 1.2; /* Satır yüksekliği eklendi */
+}
+
+.logo img {
+    height: 45px; /* Küçültüldü */
+    width: auto;
+    margin-right: 5px; /* Azaltıldı */
+}
+
+.logo .highlight {
+    color: var(--accent-color);
+    margin-left: 5px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px; /* Azaltıldı */
+}
+
+nav ul li a {
+    color: var(--dark-color);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    font-size: 15px; /* Küçültüldü */
+}
+
+nav ul li a:hover, nav ul li a:focus {
+    color: var(--primary-color);
+}
+
+nav ul li a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+nav ul li a:hover:after, nav ul li a:focus:after {
+    width: 100%;
+}
+
+/* Hero Bölümü */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px; /* Azaltıldı */
+    margin-top: 0;
+    position: relative;
+    border-bottom: 4px solid var(--accent-color);
+}
+
+/* Sayfa yükleme performansı için hero arka plan görselini lazy load yapalım */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.hero h2 {
+    font-size: 38px; /* Küçültüldü */
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 18px; /* Küçültüldü */
+    margin-bottom: 25px; /* Azaltıldı */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hero butonlar bölümü */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Azaltıldı */
+    margin-top: 20px; /* Azaltıldı */
+    flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+    min-width: 180px; /* Azaltıldı */
+}
+
+.hero-buttons .btn i {
+    margin-right: 8px;
+}
+
+/* Hero içindeki highlight */
+.hero .highlight {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* Hizmetler Bölümü */
+.services {
+    padding: 60px 0; /* Azaltıldı */
+    background-color: white;
+}
+
+.service-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px; /* Azaltıldı */
+}
+
+.service-item {
+    background-color: #fff;
+    padding: 25px; /* Azaltıldı */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.service-item:hover, .service-item:focus-within {
+    transform: translateY(-5px); /* Azaltıldı */
+    border-bottom-color: var(--accent-color);
+}
+
+.service-item i {
+    font-size: 36px; /* Küçültüldü */
+    color: var(--accent-color);
+    margin-bottom: 15px; /* Azaltıldı */
+}
+
+.service-item h3 {
+    margin-bottom: 12px; /* Azaltıldı */
+    color: var(--dark-color);
+    font-size: 18px; /* Belirtildi */
+}
+
+.service-item p {
+    font-size: 15px; /* Eklendi */
+    color: var(--text-light);
+}
+
+/* Galeri Bölümü */
+.gallery {
+    padding: 60px 0; /* Azaltıldı */
+    background-color: var(--light-color);
+    background-image: none; /* Kaldırıldı */
+}
+
+.video-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px; /* Azaltıldı */
+    margin-top: 25px; /* Azaltıldı */
+}
+
+.video-item {
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.video-item:hover, .video-item:focus-within {
+    transform: translateY(-5px);
+    border-bottom-color: var(--accent-color);
+}
+
+.video-item iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    aspect-ratio: 16/9;
+}
+
+.video-info {
+    padding: 15px; /* Azaltıldı */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-info h3 {
+    font-size: 16px; /* Küçültüldü */
+    margin-bottom: 8px; /* Azaltıldı */
+    color: var(--primary-color);
+    line-height: 1.3;
+}
+
+.video-info p {
+    margin-top: auto;
+    padding-top: 8px; /* Azaltıldı */
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.video-info p:last-child {
+    border-top: 1px solid #eee;
+    padding-top: 8px;
+    margin-top: 8px;
+}
+
+.video-info small {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.video-info a {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* İletişim Bölümü */
+.contact {
+    padding: 60px 0; /* Azaltıldı */
+    background-color: white;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Azaltıldı */
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Azaltıldı */
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px; /* Azaltıldı */
+}
+
+.info-item i {
+    font-size: 20px; /* Küçültüldü */
+    color: var(--accent-color); /* Vurgu rengi ile uyumlu */
+    min-width: 20px; /* Hizalama için sabit genişlik */
+}
+
+.contact-form {
+    background-color: var(--light-color);
+    padding: 25px; /* Azaltıldı */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.contact-form h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-size: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Azaltıldı */
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px 15px; /* Azaltıldı */
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-radius);
+    font-size: 15px; /* Küçültüldü */
+    transition: var(--transition);
+    font-family: var(--font-family);
+}
+
+textarea {
+    min-height: 120px; /* Azaltıldı */
+    resize: vertical;
+}
+
+/* Kart tamiri form alanı için düzenleme */
+select {
+    background-color: white;
+    color: var(--text-color);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+/* Kart Tamiri Bölümü */
+.kart-tamiri {
+    padding: 60px 0; /* Azaltıldı */
+    background-color: #f5f9fd; /* Daha hafif arka plan */
+    border-top: 3px solid var(--primary-color); /* Azaltıldı */
+    border-bottom: 3px solid var(--primary-color); /* Azaltıldı */
+}
+
+.kart-tamiri-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Azaltıldı */
+    margin-top: 25px; /* Azaltıldı */
+}
+
+.kart-tamiri-info, 
+.kart-tamiri-process {
+    background-color: white;
+    padding: 25px; /* Azaltıldı */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border-left: 3px solid var(--accent-color); /* Azaltıldı */
+}
+
+.kart-tamiri-info h3, 
+.kart-tamiri-process h3 {
+    margin-bottom: 15px; /* Azaltıldı */
+    color: var(--primary-color);
+    font-size: 20px; /* Küçültüldü */
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px; /* Azaltıldı */
+    display: inline-block;
+}
+
+.kart-tamiri-info ul,
+.kart-tamiri-process ol {
+    margin-left: 20px;
+    margin-bottom: 20px; /* Azaltıldı */
+}
+
+.kart-tamiri-info ul li,
+.kart-tamiri-process ol li {
+    margin-bottom: 8px; /* Azaltıldı */
+    line-height: 1.5; /* Azaltıldı */
+    font-size: 15px; /* Eklendi */
+}
+
+.kart-tamiri-process ol {
+    counter-reset: item;
+    list-style-type: none;
+}
+
+.kart-tamiri-process ol li {
+    position: relative;
+    padding-left: 32px; /* Azaltıldı */
+    margin-bottom: 12px; /* Azaltıldı */
+}
+
+.kart-tamiri-process ol li::before {
+    content: counter(item);
+    counter-increment: item;
+    position: absolute;
+    left: 0;
+    top: 1px; /* Hizalama için */
+    background-color: var(--accent-color);
+    color: white;
+    width: 22px; /* Küçültüldü */
+    height: 22px; /* Küçültüldü */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px; /* Küçültüldü */
+}
+
+.kart-tamiri-process strong {
+    color: var(--dark-color);
+}
+
+/* Footer Bölümü */
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 40px 0 0; /* Azaltıldı */
+    border-top: 3px solid var(--accent-color); /* Azaltıldı */
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Küçültüldü */
+    gap: 30px; /* Azaltıldı */
+    padding-bottom: 30px; /* Azaltıldı */
+}
+
+.footer-logo h3 {
+    color: white;
+    margin-bottom: 15px; /* Azaltıldı */
+    font-size: 18px; /* Küçültüldü */
+}
+
+.footer-links h4, .footer-contact h4 {
+    margin-bottom: 15px; /* Azaltıldı */
+    color: var(--accent-color);
+    font-size: 16px; /* Eklendi */
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px; /* Azaltıldı */
+}
+
+.footer-links ul li a {
+    color: #adb5bd;
+    transition: var(--transition);
+    font-size: 14px; /* Eklendi */
+}
+
+.footer-links ul li a:hover, .footer-links ul li a:focus {
+    color: white;
+}
+
+.footer-contact p {
+    margin-bottom: 8px; /* Azaltıldı */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Azaltıldı */
+    font-size: 14px; /* Eklendi */
+}
+
+.footer-contact i {
+    color: var(--accent-color);
+    min-width: 16px; /* Hizalama için sabit genişlik */
+}
+
+.footer-contact a {
+    color: #adb5bd;
+}
+
+.footer-contact a:hover, .footer-contact a:focus {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 15px 0; /* Azaltıldı */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px; /* Eklendi */
+}
+
+/* Footer SEO metni için stil */
+.seo-text {
+    font-size: 13px; /* Küçültüldü */
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px; /* Azaltıldı */
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        padding: 10px; /* Eklendi */
+    }
+    
+    nav {
+        margin-top: 15px; /* Azaltıldı */
+        width: 100%; /* Tam genişlik */
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 5px 8px; /* Azaltıldı */
+    }
+    
+    .logo h1 {
+        font-size: 20px; /* Küçültüldü */
+        text-align: center; /* Eklendi */
+        line-height: 1.3; /* Eklendi */
+        display: block; /* Değiştirildi */
+    }
+    
+    .logo {
+        justify-content: center; /* Eklendi */
+        flex-wrap: wrap; /* Eklendi */
+    }
+    
+    .hero {
+        padding: 60px 15px; /* Azaltıldı */
+    }
+    
+    .hero h2 {
+        font-size: 28px; /* Küçültüldü */
+    }
+    
+    .hero p {
+        font-size: 16px; /* Küçültüldü */
+    }
+    
+    .section-title {
+        font-size: 24px; /* Küçültüldü */
+        margin-bottom: 30px; /* Azaltıldı */
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px; /* Azaltıldı */
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 250px; /* Azaltıldı */
+    }
+    
+    /* Bölüm padding'leri azaltıldı */
+    .services, .gallery, .kart-tamiri, .contact {
+        padding: 40px 0;
+    }
+    
+    .section-description {
+        font-size: 15px; /* Küçültüldü */
+    }
+    
+    .contact-form h3 {
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-items, .video-container, .contact-container, .kart-tamiri-content {
+        grid-template-columns: 1fr;
+        gap: 20px; /* Azaltıldı */
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 25px; /* Azaltıldı */
+    }
+    
+    .info-item {
+        justify-content: center;
+    }
+    
+    .video-item iframe {
+        height: 180px;
+    }
+    
+    .btn {
+        font-size: 13px; /* Küçültüldü */
+        padding: 10px 16px; /* Azaltıldı */
+    }
+    
+    .kart-tamiri-info, .kart-tamiri-process, .contact-form {
+        padding: 20px; /* Azaltıldı */
+    }
+    
+    .footer-contact p {
+        justify-content: center; /* Eklendi */
+    }
+}
+
+/* Highlight Style - Kart Tamiri vurgusu için */
+.highlight {
+    color: var(--accent-color);
+    font-weight: 600;
+} 
